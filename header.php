@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="styles\header.css">
     <link rel="stylesheet" type="text/css" href="styles\login.css">
     <link rel="stylesheet" type="text/css" href="styles\register.css">
-    <link rel="stylesheet" type="text/css" href="styles\userconfig.css">
+    <link rel="stylesheet" type="text/css" href="styles\index.css">
+    <link rel="stylesheet" type="text/css" href="styles\index.js">
 </head>
 
 <body>

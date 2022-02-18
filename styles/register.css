@@ -17,6 +17,7 @@ div#logbox{
     left: 50vw;
     transform: translate(-50%, -50%);
     z-index: -1;
+    
 }
 
 div#register{

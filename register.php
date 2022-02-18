@@ -9,7 +9,7 @@
             <div id="pass">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Enter Password">
-                <label>Repeat The Password</label>
+                <label>Repeat Password</label>
                 <input type="password" name="repassword" placeholder="Enter Password">
             </div>
             <div id="newuser">

@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 6vh;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 0 2vw;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    align-items: center;
+  }
+
+
+  nav div button{
+    background-color: transparent;
+    border: none;
+    margin-right: 1vw;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+  }
+
+  nav div#wrapp1{
+    float:right;
+    margin-right:25px;
+    list-style: none;
+  }
+  nav div div#wrapp2{
+    line-height:50px;
+    margin:0 15px;
+    
+  }

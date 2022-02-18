@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url('ns.jpg');
+    background-size: cover;
+}
+
+div#logbox{
+    background-color: rgba(44, 45, 59, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+div#register{
+    background-color: rgb(220, 220, 220);
+    width: 40vw;
+    height: 100vh;
+    position: absolute;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    top: 50vh;
+    left: 20vw;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 20vh 20vh;
+}
+div#register label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+    font-size: 22px;
+}
+
+div#register input{
+    width: 100%;
+    margin-bottom: 4vh;
+}
+
+div#register ::placeholder{
+    color: rgb(78, 78, 78);
+}
+
+div#register input[type="text"], div#register input[type="password"]{
+    border: none;
+    border-bottom: 20px;
+    background-color: transparent;
+    border-bottom: 1.2px solid rgba(78,78,78);
+    outline: none;
+    height: 40px;
+    color: rgb(3, 3, 3);
+    font-size: 16px;
+}
+
+div#register input[type="submit"]{
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    background-color: rgb(94, 94, 94);
+    height: 50px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+div#tolog{
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
+    font-size: 1rem;
+}
+
+div#tolog button{
+    background-color: transparent;
+    color: rgb(10, 26, 255);
+    border: none;
+    border-bottom: 1.2px solid rgb(10, 26, 255);
+    font-weight: bold;
+    margin-left: 1vh;
+    cursor: pointer;
+}
+
+div div#tolog label{
+    font-size: 16px;
+}

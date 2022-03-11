@@ -9,8 +9,6 @@ echo '<form>
         <input type="text" name="facturesI" placeholder="facturesincorrecte">
         <input type="submit" name="processar">
         </form>';
-
-
         ?>
 </body>
 </html>

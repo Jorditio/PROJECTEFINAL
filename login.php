@@ -1,4 +1,19 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+
+class CRUD extends Connexio
+    {
+        public function selectlogin($username)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT username, contrasenya FROM usuaris where username = :username");
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+
+
+?>
 <div id=logbox>
     <div id="login">
         <form>
@@ -17,6 +32,19 @@
         </div>
     </div>
 </div>
+
+
+
+<?php
+
+if(isset($_GET["send"])){
+
+    $cmd = new CRUD();
+    $registres = $cmd->selectlogin($username);
+
+}
+
+?>
 
 </body>
 

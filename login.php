@@ -1,4 +1,7 @@
-<?php include 'header.php'; 
+<?php include 'header.php'; ?>
+<?php include 'connexio.php'; ?>
+
+<?php
 
 class CRUD extends Connexio
     {
@@ -10,10 +13,10 @@ class CRUD extends Connexio
             return $stmt->fetchAll();
         }
     }
-
-
-
 ?>
+
+
+
 <div id=logbox>
     <div id="login">
         <form>
@@ -37,11 +40,16 @@ class CRUD extends Connexio
 
 <?php
 
+
 if(isset($_GET["send"])){
+    $usuari = $_GET["username"];
+    $password = $_GET["password"];
 
     $cmd = new CRUD();
     $registres = $cmd->selectlogin($username);
+    
 
+    
 }
 
 ?>

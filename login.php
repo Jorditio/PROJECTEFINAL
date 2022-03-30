@@ -46,7 +46,13 @@ if(isset($_GET["send"])){
     $password = $_GET["password"];
 
     $cmd = new CRUD();
-    $registres = $cmd->selectlogin($username);
+    $registres = $cmd->selectlogin($usuari);
+
+    foreach($registres as $reg){
+        if($password == $reg["contrasenya"]){
+            header("LOCATION:cotxes.php");
+        }
+    }
 }
 
 ?>

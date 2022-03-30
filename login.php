@@ -47,9 +47,6 @@ if(isset($_GET["send"])){
 
     $cmd = new CRUD();
     $registres = $cmd->selectlogin($username);
-    
-
-    
 }
 
 ?>

@@ -70,7 +70,7 @@ class CRUD extends Connexio
         }
         else{
             foreach ($usuaris as $usu){
-                if ($usu['email'] != $mail){
+                if ($usu['username'] != $username){
                     $cmd->insert($fullname, $username, $password, $mail);
                     break;
                 }

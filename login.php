@@ -19,7 +19,7 @@ class CRUD extends Connexio
 
 <div id=logbox>
     <div id="login">
-        <form>
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div id="user">
                 <label>Username</label><br>
                 <input type="text" name="username" placeholder="Enter Username"><br>

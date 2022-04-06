@@ -1,4 +1,8 @@
-<?php include 'header.php'; include 'connexio.php';?>
+<?php
+
+use CRUD as GlobalCRUD;
+
+ include 'header.php'; include 'connexio.php';?>
 
 
 
@@ -46,7 +50,46 @@ class CRUD extends Connexio
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+
+        public function insert($mar,$mod, $any, $tra, $car, $descr)
+        {
+            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio) values (:mar, :mod, :any, :tra, :car, :descr)");
+            $stmt->bindParam(":mar", $mar, PDO::PARAM_STR);
+            $stmt->bindParam(":mod", $mod, PDO::PARAM_STR);
+            $stmt->bindParam(":any", $any, PDO::PARAM_STR);
+            $stmt->bindParam(":tra", $tra, PDO::PARAM_STR);
+            $stmt->bindParam(":car", $car, PDO::PARAM_STR);
+            $stmt->bindParam(":descr", $descr, PDO::PARAM_STR);
+            if ($stmt->execute())
+            {
+                return "CORRECTE";
+            }
+            else {
+                return "ERROR";
+            }
+        }
+
     }
+
+?>
+
+<?php
+            $cmd = new CRUD();
+
+        if(isset($_POST["send"])){
+            $marca = $_POST["marca"];
+            $models = $_POST["model"];
+            $any = $_POST["any"];
+            $trans = $_POST["trans"];
+            $combustible = $_POST["carburant"];
+            $descripcio = $_POST["desc"];
+
+            $cmd->insert($marca, $models, $any, $trans, $combustible, $descripcio);
+            echo '<script language="javascript">alert("Automobil inserit correctament");</script>';
+
+            
+        }
 
 ?>
 
@@ -121,10 +164,10 @@ class CRUD extends Connexio
             </div>
             <input type="submit" name="send" id="btsend" value="OK"><br>
         </form>
-        <!-- <div id="tolog">
-            <label>Already have an account?<a href="login.php"><button id="login">LOG IN</button></a></label>
-        </div> -->
+
     </div>
 </div>
 </body>
+
+
 </html>

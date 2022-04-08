@@ -52,7 +52,7 @@ class CRUD extends Connexio
         }
 
 
-        public function insert($mar,$mod, $any, $tra, $car, $descr)
+        public function insert($mar,$mod, $any, $tra, $car, $descr, $foto)
         {
 
             // consulta del id del usuari connectat
@@ -60,12 +60,13 @@ class CRUD extends Connexio
             $stmt->execute();
             $idusername = $stmt->fetchAll()[0]["idusuaris"];
             
-            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio, usuaris_idusuaris) values (:mar, :mod, :any, :tra, :car, :descr, :user)");
+            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio, usuaris_idusuaris, fotos, time) values (:mar, :mod, :any, :tra, :car, :descr, :user, :foto, NOW())");
             $stmt->bindParam(":mar", $mar, PDO::PARAM_STR);
             $stmt->bindParam(":mod", $mod, PDO::PARAM_STR);
             $stmt->bindParam(":any", $any, PDO::PARAM_STR);
             $stmt->bindParam(":tra", $tra, PDO::PARAM_STR);
             $stmt->bindParam(":car", $car, PDO::PARAM_STR);
+            $stmt->bindParam(":foto", $foto, PDO::PARAM_STR);
             $stmt->bindParam(":descr", $descr, PDO::PARAM_STR);
             $stmt->bindParam(":user", $idusername, PDO::PARAM_STR);
             if ($stmt->execute())
@@ -82,7 +83,7 @@ class CRUD extends Connexio
 ?>
 
 <?php
-            $cmd = new CRUD();
+        $cmd = new CRUD();
 
         if(isset($_POST["send"])){
             $marca = $_POST["marca"];
@@ -92,10 +93,21 @@ class CRUD extends Connexio
             $combustible = $_POST["carburant"];
             $descripcio = $_POST["desc"];
 
-            $cmd->insert($marca, $models, $any, $trans, $combustible, $descripcio);
-            echo '<script language="javascript">alert("Automobil inserit correctament");</script>';
+            $mida = $_FILES["fitxer"]["size"];
+            if ($mida > 1024 * 1024) {
+                echo '<script language="javascript">alert("Imatge Massa Gran");</script>';
+                return;
+            }
+            $res = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
+            if ($res) {
+                $image = "pujades/" . $_FILES['fitxer']['name'];
+                echo '<script language="javascript">alert("Guarda a PHP");</script>';
+              } else {
+                echo '<script language="javascript">alert("NO save php");</script>';
+              }
 
-            
+            $cmd->insert($marca, $models, $any, $trans, $combustible, $descripcio, $image);
+            echo '<script language="javascript">alert("Automobil inserit correctament");</script>';
         }
 
 
@@ -105,10 +117,9 @@ class CRUD extends Connexio
 ?>
 
 
-
 <div id=logbox>
     <div id="register">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div id="nameuser">
                 <label>Marca</label><br>
                 <select name="marca" value="marca">
@@ -140,23 +151,25 @@ class CRUD extends Connexio
                 <label>Any</label>
                 <input type="text" name="any" placeholder="Introdueixi l'any">
             </div>
-            <!-- <div id="any"> //////Foto
-                <label>Any</label>
-                <input type="text" name="any" placeholder="Introdueixi l'any">
-            </div> -->
+
+            <div id="fitxer">
+                <label>Imatge</label>
+                <input type="file" name="fitxer" placeholder="Selecciona el fitxer">
+            </div>
+
             <div id="transmissio">
                 <label>Transmissio</label><br>
                 <select name="trans" value="trans">
                 <?php         
                 $cmd = new CRUD();
                 $transmissio = $cmd->selectrans();  
-
                 foreach ($transmissio as $updates) {
                         echo '
                         <option value="' . $updates["nom"] . '">' . $updates['nom'] . '</option>';
                     }
-                ?></select>
-            </div><br>
+                ?>
+                </select>
+            </div>
             <div id="Carburant">
                 <label>Carburant</label><br>
                 <select name="carburant" value="carburant">

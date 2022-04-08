@@ -23,8 +23,12 @@
             <div id="wrapp1">
                 <div id="wrapp2">
                     <a href="insert.php"><button id="insert">INSERT</button></a>
-                    <a href="login.php"><button id="login">LOG IN</button></a>
-                </div>
+                    <?php if (!isset($_COOKIE["usuari"])) { ?>
+                        <a href="login.php"><button id="login">LOG IN</button></a>
+                    <?php }else {  ?>
+                        <a href="login.php?logout"><button id="login">LOG OUT</button></a>
+                    <?php } ?>
+                 </div>
             </div>
         </nav>
     </header>

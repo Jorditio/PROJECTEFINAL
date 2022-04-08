@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+           
+            echo  $_COOKIE["usuari"];
+?>
 
 
 <section class="post-list">

@@ -1,7 +1,25 @@
 <?php include 'header.php'; ?>
+<?php include 'connexio.php'; ?>
+
+<?php
+
+class CRUD extends Connexio
+    {
+        public function selectlogin($username)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT username, contrasenya FROM usuaris where username = :username");
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+?>
+
+
+
 <div id=logbox>
     <div id="login">
-        <form>
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div id="user">
                 <label>Username</label><br>
                 <input type="text" name="username" placeholder="Enter Username"><br>
@@ -17,6 +35,32 @@
         </div>
     </div>
 </div>
+
+
+
+<?php
+
+if (isset($_GET["logout"])) {
+    setcookie("usuari", null);
+}
+
+if(isset($_GET["send"])){
+    $usuari = $_GET["username"];
+    $password = $_GET["password"];
+
+    $cmd = new CRUD();
+    $registres = $cmd->selectlogin($usuari);
+
+    foreach($registres as $reg){
+        if($password == $reg["contrasenya"]){
+            setcookie("usuari", $usuari);
+        
+            header("LOCATION:cotxes.php");
+        }
+    }
+}
+
+?>
 
 </body>
 

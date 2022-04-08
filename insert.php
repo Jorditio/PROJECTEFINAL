@@ -54,13 +54,20 @@ class CRUD extends Connexio
 
         public function insert($mar,$mod, $any, $tra, $car, $descr)
         {
-            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio) values (:mar, :mod, :any, :tra, :car, :descr)");
+
+            // consulta del id del usuari connectat
+            $stmt = Connexio::connectar()->prepare("SELECT * from usuaris where username ='". $_COOKIE['usuari']."'");
+            $stmt->execute();
+            $idusername = $stmt->fetchAll()[0]["idusuaris"];
+            
+            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio, usuaris_idusuaris) values (:mar, :mod, :any, :tra, :car, :descr, :user)");
             $stmt->bindParam(":mar", $mar, PDO::PARAM_STR);
             $stmt->bindParam(":mod", $mod, PDO::PARAM_STR);
             $stmt->bindParam(":any", $any, PDO::PARAM_STR);
             $stmt->bindParam(":tra", $tra, PDO::PARAM_STR);
             $stmt->bindParam(":car", $car, PDO::PARAM_STR);
             $stmt->bindParam(":descr", $descr, PDO::PARAM_STR);
+            $stmt->bindParam(":user", $idusername, PDO::PARAM_STR);
             if ($stmt->execute())
             {
                 return "CORRECTE";
@@ -91,7 +98,12 @@ class CRUD extends Connexio
             
         }
 
+
+        if(isset($_COOKIE["usuari"])){
+
+        
 ?>
+
 
 
 <div id=logbox>
@@ -167,6 +179,13 @@ class CRUD extends Connexio
 
     </div>
 </div>
+<?php } 
+
+else{
+    echo '<script language="javascript">alert("Has de tenir la sessio iniciada");</script>';
+}
+?>
+
 </body>
 
 

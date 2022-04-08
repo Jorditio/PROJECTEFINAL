@@ -40,6 +40,9 @@ class CRUD extends Connexio
 
 <?php
 
+if (isset($_GET["logout"])) {
+    setcookie("usuari", null);
+}
 
 if(isset($_GET["send"])){
     $usuari = $_GET["username"];
@@ -50,6 +53,8 @@ if(isset($_GET["send"])){
 
     foreach($registres as $reg){
         if($password == $reg["contrasenya"]){
+            setcookie("usuari", $usuari);
+        
             header("LOCATION:cotxes.php");
         }
     }

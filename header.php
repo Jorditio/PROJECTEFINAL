@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +17,11 @@
     <header>
         <nav>
             <div id="manifold">
-                <a href="index.php"><button id="HOME">MANIFOLD</button></a>
+                <?php if (!isset($_COOKIE["usuari"])) { ?>
+                    <a href="index.php"><button id="HOME">MANIFOLD</button></a>
+                <?php }else {  ?>
+                    <a href="cotxes.php"><button id="HOME">MANIFOLD</button></a>
+                <?php } ?>
             </div>
             <div id="wrapp1">
                 <div id="wrapp2">

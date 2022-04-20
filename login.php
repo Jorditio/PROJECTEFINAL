@@ -54,7 +54,6 @@ if(isset($_GET["send"])){
     foreach($registres as $reg){
         if($password == $reg["contrasenya"]){
             setcookie("usuari", $usuari);
-        
             header("LOCATION:cotxes.php");
         }
     }

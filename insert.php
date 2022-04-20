@@ -101,7 +101,6 @@ class CRUD extends Connexio
             $res = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
             if ($res) {
                 $image = "pujades/" . $_FILES['fitxer']['name'];
-                echo '<script language="javascript">alert("Guarda a PHP");</script>';
               } else {
                 echo '<script language="javascript">alert("NO save php");</script>';
               }

@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 <?php include 'header.php';?>
+=======
+<?php include 'header.php'; 
+           
+?>
+>>>>>>> Stashed changes
 
 
 <section class="post-list">

@@ -1,3 +1,7 @@
+<?php 
+if (isset($_GET["logout"])) {
+    setcookie("usuari", null);
+} ?>
 <?php include 'header.php'; ?>
 <?php include 'connexio.php'; ?>
 
@@ -40,9 +44,7 @@ class CRUD extends Connexio
 
 <?php
 
-if (isset($_GET["logout"])) {
-    setcookie("usuari", null);
-}
+
 
 if(isset($_GET["send"])){
     $usuari = $_GET["username"];

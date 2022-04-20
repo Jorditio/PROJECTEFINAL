@@ -11,12 +11,8 @@ use CRUD as GlobalCRUD;
 
 class CRUD extends Connexio
     {
-       
-
-
         public function selectmodel()
         {
-
             //opcio2
             $stmt = Connexio::connectar()->prepare("SELECT nom from models");
             $stmt->execute();
@@ -26,7 +22,6 @@ class CRUD extends Connexio
 
         public function selectmarca()
         {
-
             //opcio2
             $stmt = Connexio::connectar()->prepare("SELECT nom from marques");
             $stmt->execute();

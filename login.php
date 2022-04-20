@@ -1,6 +1,7 @@
 <?php 
 if (isset($_GET["logout"])) {
     setcookie("usuari", null);
+    header('Location: index.php');
 } ?>
 <?php include 'header.php'; ?>
 <?php include 'connexio.php'; ?>

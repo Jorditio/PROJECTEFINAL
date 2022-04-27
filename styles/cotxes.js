@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 parrafo.style.height = alturaMaxima + "px";
             }
         });
-
         return aplicarAlturas;
-
     })();
 
     alturaMaxima = Math.max.apply(Math, alturas);

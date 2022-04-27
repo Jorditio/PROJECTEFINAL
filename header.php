@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="styles\login.css">
     <link rel="stylesheet" type="text/css" href="styles\register.css">
     <link rel="stylesheet" type="text/css" href="styles\index.css">
-    <link rel="stylesheet" type="text/css" href="styles\cotxes.js">
     <link rel="stylesheet" type="text/css" href="styles\cotxes.css">
 </head>
 

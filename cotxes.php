@@ -17,7 +17,7 @@ echo '<section class="post-list">
 foreach ($fotos as $fo) {
   echo '<article class="post">
       <div class="post-header">
-          <div class="post-img-1" style="background-image: ' . $fo["fotos"] . ';"></div>
+          <img class="post-img-1" src="' . $fo["fotos"] . '">
       </div>
       <div class="post-body">
           <span></span>

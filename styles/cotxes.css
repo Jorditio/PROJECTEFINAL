@@ -28,21 +28,23 @@ body {
     margin: 5vh;
 }
 
-.post-img-1 {
-    height: 50vh;
-}
 
 .post {
-    height: 70vh;
+    height: auto;
     width: 30vw;
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, .1);
     transition: .2s;
     padding: 1vh;
+    margin-bottom: 1vh;
 }
 
 .post:hover {
     transform: translate(-4px);
     box-shadow: 0 1px 14px 2px rgba(0, 0, 0, .15);
+}
+
+.post-img-1{
+    width: 100%;
 }
 
 .post-header {

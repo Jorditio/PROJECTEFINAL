@@ -40,11 +40,20 @@ body {
 
 .post:hover {
     transform: translate(-4px);
-    box-shadow: 0 1px 14px 2px rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 14px 2px rgba(0, 0, 0, .5);
 }
 
 .post-img-1{
     width: 100%;
+}
+
+.datas{
+    display: none;
+}
+.datas:hover{
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .post-header {

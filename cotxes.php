@@ -18,12 +18,12 @@ foreach ($fotos as $fo) {
   echo '<article class="post">
       <div class="post-header">
           <img class="post-img-1" src="' . $fo["fotos"] . '">
+          <div class="datas"> '.$fo["time"].'</div>
       </div>
       <div class="post-body">
           <span></span>
           <h2>'.$fo["nom"].'</h2>
           <p class="descripcion">'.$fo["descripcio"].' </p>
-          <p> '.$fo["time"].'</p>
       </div>
   </article>';
 }

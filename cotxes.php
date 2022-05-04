@@ -33,6 +33,6 @@ echo '</div>
 } else {
   header('Location: login.php');
 }?>
-<script src="main.js"></script>
+<script src="cotxes.js"></script>
 </body>
 </html>

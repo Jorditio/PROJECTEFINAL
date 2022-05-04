@@ -3,10 +3,10 @@
     padding: 0;
 }
 
-body{
+/* body{
     background-image: url('ns.jpg');
     background-size: cover;
-}
+} */
 
 div#logbox{
     background-color: rgba(44, 45, 59, 0.5);

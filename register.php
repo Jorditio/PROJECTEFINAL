@@ -1,4 +1,5 @@
-<?php include 'header.php'; include 'connexio.php';?>
+<?php include 'header.php';
+include 'connexio.php'; ?>
 <div id=logbox>
     <div id="register">
         <form method="POST">
@@ -31,55 +32,49 @@
 <?php
 
 class CRUD extends Connexio
+{
+    public function insert($e, $s, $x, $d)
     {
-        public function insert($e,$s, $x, $d)
-        {
-            $stmt = Connexio::connectar()->prepare("INSERT INTO usuaris (nom, username, contrasenya, email) values (:e, :s, :x, :d)");
-            $stmt->bindParam(":e", $e, PDO::PARAM_STR);
-            $stmt->bindParam(":s", $s, PDO::PARAM_STR);
-            $stmt->bindParam(":x", $x, PDO::PARAM_STR);
-            $stmt->bindParam(":d", $d, PDO::PARAM_STR);
-            if ($stmt->execute())
-            {
-                return "CORRECTE";
-            }
-            else {
-                return "ERROR";
-            }
-        }
-
-        public function select($m)
-        {
-            $stmt = Connexio::connectar()->prepare("SELECT idusuaris, nom, username, contrasenya, email FROM usuaris WHERE email = :m");
-            $stmt->bindParam(":m", $m, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll();
+        $stmt = Connexio::connectar()->prepare("INSERT INTO usuaris (nom, username, contrasenya, email) values (:e, :s, :x, :d)");
+        $stmt->bindParam(":e", $e, PDO::PARAM_STR);
+        $stmt->bindParam(":s", $s, PDO::PARAM_STR);
+        $stmt->bindParam(":x", $x, PDO::PARAM_STR);
+        $stmt->bindParam(":d", $d, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return "CORRECTE";
+        } else {
+            return "ERROR";
         }
     }
-    $cmd = new CRUD();
-    if (isset($_POST["send"])){
-        $fullname = $_POST["fullname"];
-        $password = $_POST["password"];
-        $repassword = $_POST["repassword"];
-        $username = $_POST["newusername"];
-        $mail = $_POST["mail"];
-        $usuaris = $cmd->select($mail);
 
-        if ($password != $repassword){
-            echo '<script language="javascript">alert("!PASSWRD");</script>';
-        }
-        else{
-            foreach ($usuaris as $usu){
-                if ($usu['username'] != $username){
-                    $cmd->insert($fullname, $username, $password, $mail);
-                    break;
-                }
-                else{
-                    echo '<script language="javascript">alert("JA EXISTEIX UNA COMPTE CREADA AMB AQUEST MAIL");</script>';
-                }
-            }
+    public function select($m)
+    {
+        $stmt = Connexio::connectar()->prepare("SELECT idusuaris, nom, username, contrasenya, email FROM usuaris WHERE email = :m");
+        $stmt->bindParam(":m", $m, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+}
+$cmd = new CRUD();
+if (isset($_POST["send"])) {
+    $fullname = $_POST["fullname"];
+    $password = $_POST["password"];
+    $repassword = $_POST["repassword"];
+    $username = $_POST["newusername"];
+    $mail = $_POST["mail"];
+    $usuaris = $cmd->select($mail);
+
+    if ($password != $repassword) {
+        echo '<script language="javascript">alert("LES CONTRASENYES SÓN DIFERENTS");</script>';
+    } else {
+        if (count($usuaris)==0) {
+            $cmd->insert($fullname, $username, $password, $mail);
+        } else {
+            echo '<script language="javascript">alert("JA EXISTEIX UNA COMPTE CREADA AMB AQUEST MAIL");</script>';
         }
     }
+}
 ?>
 </body>
+
 </html>

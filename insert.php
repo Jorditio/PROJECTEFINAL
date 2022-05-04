@@ -183,7 +183,6 @@ class CRUD extends Connexio
             </div>
             <input type="submit" name="send" id="btsend" value="OK"><br>
         </form>
-
     </div>
 </div>
 <?php } 

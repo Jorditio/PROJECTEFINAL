@@ -5,7 +5,7 @@ class CRUD extends Connexio
 {
   public function select()
   {
-    $stmt = Connexio::connectar()->prepare("SELECT * from pujades, usuaris where pujades.usuaris_idusuaris = usuaris.idusuaris order by time desc");
+    $stmt = Connexio::connectar()->prepare("SELECT idindex, marca, model, any, fotos, transmissio, carburant, descripcio, usuaris_idusuaris, time	, idusuaris, username from pujades, usuaris where pujades.usuaris_idusuaris = usuaris.idusuaris order by time desc");
     $stmt->execute();
     return $stmt->fetchAll();
   }
@@ -23,7 +23,7 @@ foreach ($fotos as $fo) {
       </div>
       <div class="post-body">
           <span></span>
-          <h2>'.$fo["nom"].'</h2>
+          <h2>'.$fo["username"].'</h2>
           <p class="descripcion">'.$fo["descripcio"].' </p>
       </div>
   </article>';

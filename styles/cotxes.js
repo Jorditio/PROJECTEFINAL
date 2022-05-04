@@ -16,9 +16,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         });
         return aplicarAlturas;
     })();
-
     alturaMaxima = Math.max.apply(Math, alturas);
-
     aplicarAlturas();
-    
 });

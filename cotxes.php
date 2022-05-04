@@ -1,5 +1,6 @@
 <?php include 'connexio.php'; ?>
 <?php include 'header.php'; 
+if (isset($_COOKIE["usuari"])){
 class CRUD extends Connexio
 {
   public function select()
@@ -29,7 +30,9 @@ foreach ($fotos as $fo) {
 }
 echo '</div>
 </section>';         
-?>
+} else {
+  header('Location: login.php');
+}?>
 <script src="main.js"></script>
 </body>
 </html>

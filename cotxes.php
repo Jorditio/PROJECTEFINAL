@@ -5,7 +5,7 @@ if (isset($_COOKIE["usuari"])) {
   {
     public function select()
     {
-      $stmt = Connexio::connectar()->prepare("SELECT idindex, marca, model, any, fotos, transmissio, carburant, descripcio, usuaris_idusuaris, time	, idusuaris, username from pujades, usuaris where pujades.usuaris_idusuaris = usuaris.idusuaris order by time desc");
+      $stmt = Connexio::connectar()->prepare("SELECT idindex, UPPER(marca), UPPER(model), any, fotos, UPPER(transmissio), UPPER(carburant), descripcio, usuaris_idusuaris, time, idusuaris, UPPER(username) from pujades, usuaris where pujades.usuaris_idusuaris = usuaris.idusuaris order by time desc");
       $stmt->execute();
       return $stmt->fetchAll();
     }
@@ -29,10 +29,10 @@ if (isset($_COOKIE["usuari"])) {
                 <th>Carburant</th>
               </tr>
               <tr>
-                <td><p class="Marca">' . $fo["marca"] . ' </p></td>
-                <td><p class="Model">' . $fo["model"] . ' </p></td>
-                <td><p class="Transmissio">' . $fo["transmissio"] . ' </p></td>
-                <td><p class="Carburant">' . $fo["carburant"] . ' </p></td>
+                <td><p class="Marca">' . $fo["UPPER(marca)"] . ' </p></td>
+                <td><p class="Model">' . $fo["UPPER(model)"] . ' </p></td>
+                <td><p class="Transmissio">' . $fo["UPPER(transmissio)"] . ' </p></td>
+                <td><p class="Carburant">' . $fo["UPPER(carburant)"] . ' </p></td>
               </tr>
             </table>
             </div>
@@ -40,7 +40,7 @@ if (isset($_COOKIE["usuari"])) {
       </div>
       <div class="post-body">
           <span></span>
-          <h2>' . $fo["username"] . '</h2>
+          <h2>' . $fo["UPPER(username)"] . '</h2>
           <p class="descripcion">' . $fo["descripcio"] . ' </p>
           <div class="datas">' . $fo["time"] . '</div>
       </div>

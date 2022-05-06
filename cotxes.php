@@ -19,12 +19,20 @@ foreach ($fotos as $fo) {
   echo '<article class="post">
       <div class="post-header">
           <img class="post-img-1" src="' . $fo["fotos"] . '">
-          <div class="datas"> '.$fo["time"].'</div>
+          <div class="overlay">
+            <div class="text">
+            <p class="Marca">'.$fo["marca"].' </p>
+            <p class="Model">'.$fo["model"].' </p>
+            <p class="Transmissio">'.$fo["transmissio"].' </p>
+            <p class="Carburant">'.$fo["carburant"].' </p>
+            </div>
+          </div>
       </div>
       <div class="post-body">
           <span></span>
           <h2>'.$fo["username"].'</h2>
           <p class="descripcion">'.$fo["descripcio"].' </p>
+          <div class="datas">'. $fo["time"].'</div>
       </div>
   </article>';
 }

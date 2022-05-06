@@ -24,7 +24,9 @@
             </div>
             <div id="wrapp1">
                 <div id="wrapp2">
+                <?php if (isset($_COOKIE["usuari"])) { ?>
                     <a href="insert.php"><button id="insert">INSERT</button></a>
+                    <?php }?>
                     <?php if (!isset($_COOKIE["usuari"])) { ?>
                         <a href="login.php"><button id="login">LOG IN</button></a>
                     <?php }else {  ?>

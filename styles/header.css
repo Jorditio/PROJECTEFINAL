@@ -4,10 +4,10 @@
 }
 
 header{
-    height: 6vh;
+    height: 8vh;
     display: flex;
     justify-content: space-around;
-    background-color: #fff;
+    background-color: #1E1E24;
     padding: 0 2vw;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -25,7 +25,7 @@ header{
     border: none;
     margin-right: 1vw;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: white;
   }
 
   nav div#wrapp1{

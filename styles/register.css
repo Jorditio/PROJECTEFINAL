@@ -17,11 +17,12 @@ div#logbox{
     left: 50vw;
     transform: translate(-50%, -50%);
     z-index: -1;
+    border-radius: 15px;
     
 }
 
 div#register{
-    background-color: rgb(220, 220, 220);
+    background-color: gray;
     width: 40vw;
     height: 100vh;
     position: absolute;
@@ -54,11 +55,12 @@ div#register input[type="text"], div#register input[type="password"]{
     border: none;
     border-bottom: 20px;
     background-color: transparent;
-    border-bottom: 1.2px solid rgba(78,78,78);
+    border-radius: 15px;
     outline: none;
     height: 40px;
     color: rgb(3, 3, 3);
     font-size: 16px;
+    cursor:text;
 }
 
 div#register input[type="submit"]{
@@ -68,6 +70,7 @@ div#register input[type="submit"]{
     background-color: rgb(94, 94, 94);
     height: 50px;
     font-weight: bolder;
+    border-radius: 15px;
     font-size: 18px;
 }
 

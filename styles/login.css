@@ -15,12 +15,12 @@ div#logbox{
     position: absolute;
     top: 50vh;
     left: 50vw;
-    transform: translate(-50%, -50%);
     z-index: -1;
+    border-radius: 15px;
 }
 
 div#login{
-    background-color: rgb(220, 220, 220);
+    background-color: gray;
     width: 40vw;
     height: 100vh;
     position: absolute;
@@ -31,6 +31,7 @@ div#login{
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 30vh 20vh;
+    
 }
 div#login label{
     margin: 0;
@@ -53,12 +54,14 @@ div#login input[type="text"], div#login input[type="password"]{
     border: none;
     border-bottom: 20px;
     background-color: transparent;
-    border-bottom: 1.2px solid rgba(78,78,78);
+    border-radius: 15px;
     outline: none;
     height: 40px;
     color: rgb(3, 3, 3);
     font-size: 16px;
 }
+
+
 
 div#login input[type="submit"]{
     border: none;
@@ -68,6 +71,7 @@ div#login input[type="submit"]{
     height: 50px;
     font-weight: bolder;
     font-size: 18px;
+    border-radius: 15px;
 }
 
 div#login input[type="submit"]:hover{
@@ -75,6 +79,7 @@ div#login input[type="submit"]:hover{
     box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, .4);
     transform: translate(0px, -2px);
     color: white;
+    border-radius: 15px;
 }
 
 div#forgot{

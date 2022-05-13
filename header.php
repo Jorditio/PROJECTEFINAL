@@ -32,7 +32,7 @@
                         <a href="login.php"><button id="login">LOG IN</button></a>
                     <?php }else {  ?>
                         <a href="login.php?logout"><button id="login">LOG OUT</button></a>
-                        <a href="userconfig.php"><button><?php echo $_COOKIE["usuari"]?></button></a>
+                        <a href="userconfig.php"><button><?php echo strtoupper($_COOKIE["usuari"])?></button></a>
                     <?php } ?>
                  </div>
             </div>

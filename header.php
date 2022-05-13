@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="styles\register.css">
     <link rel="stylesheet" type="text/css" href="styles\index.css">
     <link rel="stylesheet" type="text/css" href="styles\cotxes.css">
+    <link rel="stylesheet" type="text/css" href="styles\userconfig.css">
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                         <a href="login.php"><button id="login">LOG IN</button></a>
                     <?php }else {  ?>
                         <a href="login.php?logout"><button id="login">LOG OUT</button></a>
-                        <a href="insert.php"><button><?php echo $_COOKIE["usuari"]?></button></a>
+                        <a href="userconfig.php"><button><?php echo $_COOKIE["usuari"]?></button></a>
                     <?php } ?>
                  </div>
             </div>

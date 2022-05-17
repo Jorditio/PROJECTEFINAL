@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-size:cover;
+}
+
+/*NO MOSTRA SCROLLBAR PERÒ PERMET QUE CONTINUI FUNCIONANT*/
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.post-list {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr, auto;
+    grid-gap: 10px;
+    margin: 5vh;
+}
+
+
+.post {
+    height: auto;
+    width: 30vw;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, .1);
+    transition: .2s;
+    padding: 1vh;
+    margin-bottom: 1vh;
+}
+.post:hover {
+    transform: translate(-4px);
+    box-shadow: 0 1px 14px 2px rgba(0, 0, 0, .5);
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    font-size: larger;
+}
+  
+td {
+    text-align: center;
+    padding: 1vh;
+}
+
+.post-img-1 {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.text {
+    width: 90%;
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(25, 25, 25, 0.7);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.post-header:hover .overlay {
+    bottom: 0;
+    height: 100%;
+}
+
+.post-header {
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.post:hover .post-img-1 {
+    transform: scale(1.1);
+}
+
+.post-body {
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.post-body span {
+    display: inline-block;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.post-body h2 {
+    margin-bottom: 15px;
+
+}
+
+.post-body p {
+    line-height: 1.5;
+    margin-bottom: 20px;
+}

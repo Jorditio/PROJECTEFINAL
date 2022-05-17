@@ -20,7 +20,7 @@ div#logbox{
 }
 
 div#login{
-    background-color: gray;
+    background-color: rgb(194, 194, 194);
     width: 40vw;
     height: 100vh;
     position: absolute;

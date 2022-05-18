@@ -32,7 +32,7 @@ if (isset($_COOKIE["usuari"])) {
 ?>
 
 	<section class="py-5 my-5">
-		<div class="container">
+		<div class="container" class="userconf">
 			<h1 class="mb-5">Account Settings</h1>
 			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
 				<div class="profile-tab-nav border-right">
@@ -143,20 +143,20 @@ if (isset($_COOKIE["usuari"])) {
 						<table class="table align-middle table-hover" class="d-flex justify-content-center">
 							<thead>
 								<tr>
-									<th scope="col">Last Post</th>
-									<th scope="col">Descriptoin</th>
-									<th scope="col">Likes</th>
-									<th scope="col">Preview</th>
+									<th scope="col" style="text-align: center; width: 10vw;">Last Post</th>
+									<th scope="col" style="text-align: center">Descriptoin</th>
+									<th scope="col" style="text-align: center; width: 8vw;">Likes</th>
+									<th scope="col" style="text-align: center">Preview</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php foreach($imgsuser as $im){
 									$numposts++;
 								echo '<tr>
-									<th scope="row">'.$numposts.'</th>
-									<td>'. $im["descripcio"].'</td>
-									<td>'. $im["descripcio"].'</td>
-									<td><img class="post-img-2" src="' . $im["fotos"] . '"></td>
+									<th scope="row" style="text-align: center">'.$numposts.'</th>
+									<td style="text-align: center">'. $im["descripcio"].'</td>
+									<td style="text-align: center">'. $im["descripcio"].'</td>
+									<td style="text-align: center"><img class="post-img-2" src="' . $im["fotos"] . '"></td>
 								</tr>';
 								}?>
 							</tbody>

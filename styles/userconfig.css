@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 body {
 	font-family: "Roboto", sans-serif;
+	overflow: hidden;
 }
 
 .shadow {
@@ -34,4 +35,9 @@ body {
 	width: 100px;
 	border-radius: 100%;
 	border: 5px solid #fff;
+}
+
+.post-img-2{
+	width: auto;
+	height: 40px;
 }

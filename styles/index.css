@@ -17,10 +17,19 @@ header h4 {
     bottom: 1rem;
     font-size: 1.6rem;
 }
+.form-group{
+    width: 100%;
+}
 
 
 h1{
-    color: aliceblue;
+    color: white;
     font-size: 29;
+}
+
+h6{
+    font-size:larger;
+    width: 100%;
+    
 }
 

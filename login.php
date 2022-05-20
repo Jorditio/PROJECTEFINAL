@@ -15,16 +15,14 @@ class CRUD extends Connexio
             $stmt = Connexio::connectar()->prepare("SELECT username, contrasenya FROM usuaris where username = :username");
             $stmt->bindParam(":username", $username, PDO::PARAM_STR);
             $stmt->execute();
-            return $stmt->fetchAll();
+            return $stmt->fetch();
         }
     }
 ?>
 
-
-
 <div id=logbox>
     <div id="login">
-        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="POST" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div id="user">
                 <label>Username</label><br>
                 <input type="text" name="username" placeholder="Enter Username"><br>
@@ -36,7 +34,7 @@ class CRUD extends Connexio
             <input type="submit" name="send" id="btsend"><br>
         </form>
         <div id="forgot">
-            <a href="register.php"><button id="forgot1">Forget Password?</button></a>
+            <a href="register.php"><button id="forgot1">Don't have an account yet</button></a>
         </div>
     </div>
 </div>
@@ -44,26 +42,21 @@ class CRUD extends Connexio
 
 
 <?php
-
-
-
-if(isset($_GET["send"])){
-    $usuari = $_GET["username"];
-    $password = $_GET["password"];
+if(isset($_POST["send"])){
+    $usuari = $_POST["username"];
+    $password = $_POST["password"];
 
     $cmd = new CRUD();
     $registres = $cmd->selectlogin($usuari);
-
-    foreach($registres as $reg){
-        if($password == $reg["contrasenya"]){
-            setcookie("usuari", $usuari);
-            header("LOCATION:cotxes.php");
-        }
+	// $newpas = password_hash("123456", PASSWORD_DEFAULT);
+    // echo $newpas;
+    $samepasword = password_verify($password, $registres["contrasenya"]);
+    if($samepasword == true){
+        setcookie("usuari", $usuari);
+        header("LOCATION:cotxes.php");
     }
 }
 
 ?>
-
 </body>
-
 </html>

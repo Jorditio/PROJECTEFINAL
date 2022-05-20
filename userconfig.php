@@ -36,6 +36,18 @@ if (isset($_COOKIE["usuari"])) {
 				return "ERROR";
 			}
 		}
+
+		public function updatePasword($newpass, $user)
+		{
+			$stmt = Connexio::connectar()->prepare("UPDATE usuaris SET contrasenya = :newpas WHERE username = :username");
+			$stmt->bindParam(":newpas", $newpass, PDO::PARAM_STR);
+			$stmt->bindParam(":username", $user, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				return "CORRECTE";
+			} else {
+				return "ERROR";
+			}
+		}
 	}
 	$username = $_COOKIE["usuari"];
 	$cmd = new CRUD();
@@ -74,7 +86,7 @@ if (isset($_COOKIE["usuari"])) {
 					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
 						<h3 class="mb-4">Account Settings</h3>
 						<form method="POST" enctype="multipart/form-data">
-						<div class="row">
+							<div class="row">
 								<label>Porfile Picture</label>
 								<br>
 								<input type="file" name="fitxer" placeholder="Select your porfile picture">
@@ -84,49 +96,54 @@ if (isset($_COOKIE["usuari"])) {
 										<input type="text" name="descrip" value="<?php echo $configuser["descripciouser"]; ?>">
 									</div>
 								</div>
-						</div>
-						<div>
-							<input type="submit" class="btn btn-light" name="configsend" value="SEND">
-						</div>
+							</div>
+							<div>
+								<input type="submit" class="btn btn-light" name="configsend" value="SEND">
+							</div>
 						</form>
-					<?php if(isset($_POST["configsend"])){
-						$descripuser = $_POST["descrip"];
-						$res2 = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
-						if ($res2){
-							$pfp = "pujades/" . $_FILES['fitxer']['name'];
-						}
-						$cmd->updateConfigser($descripuser, $pfp, $username);
-						header("LOCATION:userconfig.php");
-					}?>
+						<?php if (isset($_POST["configsend"])) {
+							$descripuser = $_POST["descrip"];
+							$res2 = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
+							if ($res2) {
+								$pfp = "pujades/" . $_FILES['fitxer']['name'];
+							}
+							$cmd->updateConfigser($descripuser, $pfp, $username);
+							header("LOCATION:userconfig.php");
+						} ?>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
 						<h3 class="mb-4">Password Settings</h3>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Old password</label>
-									<input type="password" class="form-control">
+						<form method="POST">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>New password</label>
+										<input type="password" class="form-control" name="newpas">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Confirm new password</label>
+										<input type="password" class="form-control" name="confirmpas">
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>New password</label>
-									<input type="password" class="form-control">
-								</div>
+							<div>
+								<input type="submit" class="btn btn-primary" name="updatepas" value="UPDATE">
+								<input type="submit" class="btn btn-light" value="CANCEL">
 							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Confirm new password</label>
-									<input type="password" class="form-control">
-								</div>
-							</div>
-						</div>
-						<div>
-							<button class="btn btn-primary">Update</button>
-							<button class="btn btn-light">Cancel</button>
-						</div>
+						</form>
+						<?php if (isset($_POST["updatepas"])) {
+							$newpasword = $_POST["newpas"];
+							$samepas = password_verify($newpasword, password_hash($_POST["confirmpas"], PASSWORD_DEFAULT));
+							$newpas = password_hash($_POST["newpas"], PASSWORD_DEFAULT);
+							if ($samepas == true){
+								$cmd->updatePasword($newpas, $username);
+							}
+							else{
+								echo '<script language="javascript">alert("nop");</script>';
+							}
+						} ?>
 					</div>
 					<div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
 						<div>

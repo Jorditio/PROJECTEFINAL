@@ -20,12 +20,11 @@
 					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
 						<h3 class="mb-4"></h3>
 						<div class="row">
-							<div class="col-md-6">
+							
 								<div class="form-group">
-								  	<label>El nostre treball consisteix en la creació d’una aplicació web anomenada “Manifold”, la qual es resumeix en una xarxa social pels amants del motor, on es poden publicar, compartir i veure “fitxes” dels automòbils dels usuaris.
-                                      </label>
+								  	<h6>El nostre treball es diu Manifold i consisteix en la creació d'una aplicació web la qual es resumeix en una xarxa social pels amants del motor, on es poden publicar, compartir i veure “fitxes” dels automòbils dels usuaris. Paral·lelament, es poden crear perfils d'usuari per exposar els vehicles d'un mateix, així com una breu biografia per donar a entendre l'experiència que tingui l'usuari amb el món de l'automòbil.</h6>
 								</div>
-							</div>
+							
 							
 						</div>
 						<div>

@@ -23,6 +23,19 @@ if (isset($_COOKIE["usuari"])) {
 			$stmt->execute();
 			return $stmt->fetch();
 		}
+
+		public function updateConfigser($userdes, $pff, $user)
+		{
+			$stmt = Connexio::connectar()->prepare("UPDATE usuaris SET descripciouser = :userdes, pff = :pff WHERE username = :username");
+			$stmt->bindParam(":userdes", $userdes, PDO::PARAM_STR);
+			$stmt->bindParam(":pff", $pff, PDO::PARAM_STR);
+			$stmt->bindParam(":username", $user, PDO::PARAM_STR);
+			if ($stmt->execute()) {
+				return "CORRECTE";
+			} else {
+				return "ERROR";
+			}
+		}
 	}
 	$username = $_COOKIE["usuari"];
 	$cmd = new CRUD();
@@ -60,54 +73,31 @@ if (isset($_COOKIE["usuari"])) {
 				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
 					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
 						<h3 class="mb-4">Account Settings</h3>
+						<form method="POST" enctype="multipart/form-data">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>First Name</label>
-									<input type="text" class="form-control" value="Kiran">
+								<label>Porfile Picture</label>
+								<br>
+								<input type="file" name="fitxer" placeholder="Select your porfile picture">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Bio</label>
+										<input type="text" name="descrip" value="<?php echo $configuser["descripciouser"]; ?>">
+									</div>
 								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Last Name</label>
-									<input type="text" class="form-control" value="Acharya">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Email</label>
-									<input type="text" class="form-control" value="kiranacharya287@gmail.com">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Phone number</label>
-									<input type="text" class="form-control" value="+91 9876543215">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Company</label>
-									<input type="text" class="form-control" value="Kiran Workspace">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Designation</label>
-									<input type="text" class="form-control" value="UI Developer">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<label>Bio</label>
-									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
-								</div>
-							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<input type="submit" class="btn btn-light" name="configsend" value="SEND">
 						</div>
+						</form>
+					<?php if(isset($_POST["configsend"])){
+						$descripuser = $_POST["descrip"];
+						$res2 = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
+						if ($res2){
+							$pfp = "pujades/" . $_FILES['fitxer']['name'];
+						}
+						$cmd->updateConfigser($descripuser, $pfp, $username);
+						header("LOCATION:userconfig.php");
+					}?>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
 						<h3 class="mb-4">Password Settings</h3>
@@ -140,27 +130,27 @@ if (isset($_COOKIE["usuari"])) {
 					</div>
 					<div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
 						<div>
-						<table class="table align-middle table-hover" class="d-flex justify-content-center">
-							<thead>
-								<tr>
-									<th scope="col" style="text-align: center; width: 10vw;">Last Post</th>
-									<th scope="col" style="text-align: center">Descriptoin</th>
-									<th scope="col" style="text-align: center; width: 8vw;">Likes</th>
-									<th scope="col" style="text-align: center">Preview</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach($imgsuser as $im){
-									$numposts++;
-								echo '<tr>
-									<th scope="row" style="text-align: center">'.$numposts.'</th>
-									<td style="text-align: center">'. $im["descripcio"].'</td>
-									<td style="text-align: center">'. $im["descripcio"].'</td>
+							<table class="table align-middle table-hover" class="d-flex justify-content-center">
+								<thead>
+									<tr>
+										<th scope="col" style="text-align: center; width: 10vw;">Last Post</th>
+										<th scope="col" style="text-align: center">Descriptoin</th>
+										<th scope="col" style="text-align: center; width: 8vw;">Likes</th>
+										<th scope="col" style="text-align: center">Preview</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($imgsuser as $im) {
+										$numposts++;
+										echo '<tr>
+									<th scope="row" style="text-align: center">' . $numposts . '</th>
+									<td style="text-align: center">' . $im["descripcio"] . '</td>
+									<td style="text-align: center">' . $im["descripcio"] . '</td>
 									<td style="text-align: center"><img class="post-img-2" src="' . $im["fotos"] . '"></td>
 								</tr>';
-								}?>
-							</tbody>
-						</table>
+									} ?>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

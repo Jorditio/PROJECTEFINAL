@@ -1,10 +1,10 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Manifold</title>
     <link rel="stylesheet" type="text/css" href="styles\header.css">
     <link rel="stylesheet" type="text/css" href="styles\login.css">
     <link rel="stylesheet" type="text/css" href="styles\register.css">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="styles\cotxes.css">
     <link rel="stylesheet" type="text/css" href="styles\userconfig.css">
     <link rel="stylesheet" type="text/css" href="styles\userconfigss.scss">
+    <title>Manifold</title>
 </head>
 
 <body>

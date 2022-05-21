@@ -49,7 +49,6 @@ class CRUD extends Connexio
 
         public function insert($mar,$mod, $any, $tra, $car, $descr, $foto)
         {
-
             // consulta del id del usuari connectat
             $stmt = Connexio::connectar()->prepare("SELECT * from usuaris where username ='". $_COOKIE['usuari']."'");
             $stmt->execute();

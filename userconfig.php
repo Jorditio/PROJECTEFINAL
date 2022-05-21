@@ -87,7 +87,7 @@ if (isset($_COOKIE["usuari"])) {
 						<h3 class="mb-4">Account Settings</h3>
 						<form method="POST" enctype="multipart/form-data">
 							<div class="row">
-								<label>Porfile Picture</label>
+								<label>Profile Picture</label>
 								<br>
 								<input type="file" name="fitxer" placeholder="Select your porfile picture">
 								<div class="col-md-12">

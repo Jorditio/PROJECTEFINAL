@@ -40,11 +40,20 @@ if (isset($_COOKIE["usuari"])) {
       </div>
       <div class="post-body">
           <span></span>
+          <form method="POST" action="likecoment.php">
+            <input type="hidden" name="idpost" value="' . $fo["idindex"] . '">
+            <input type="submit" value="..." class="tocoment" name="tocoment">
+          </form>
           <h2>' . $fo["UPPER(username)"] . '</h2>
           <p class="descripcion">' . $fo["descripcio"] . ' </p>
           <div class="datas">' . $fo["time"] . '</div>
       </div>
   </article>';
+
+  if(isset($_POST["tocoment"])){
+    $idpost = $_POST["idpost"];
+    $_SESSION["postid"] = $idpost;
+  }
   }
   echo '</div>
 </section>';

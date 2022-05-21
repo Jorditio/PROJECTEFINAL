@@ -66,12 +66,12 @@ if (isset($_POST["send"])) {
 
 
     $issamepas = password_verify($password, password_hash($repassword, PASSWORD_DEFAULT));
-    $inpas = password_hash($_POST["newpas"], PASSWORD_DEFAULT);
+    $inpas = password_hash($password, PASSWORD_DEFAULT);
     if ($issamepas == false) {
         echo '<script language="javascript">alert("LES CONTRASENYES SÓN DIFERENTS");</script>';
     } else {
         if (count($usuaris)==0) {
-            $cmd->insert($fullname, $username, $password, $mail);
+            $cmd->insert($fullname, $username, $inpas, $mail);
         } else {
             echo '<script language="javascript">alert("JA EXISTEIX UNA COMPTE CREADA AMB AQUEST MAIL");</script>';
         }

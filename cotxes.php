@@ -40,7 +40,7 @@ if (isset($_COOKIE["usuari"])) {
       </div>
       <div class="post-body">
           <span></span>
-          <form method="POST" action="likecoment.php">
+          <form method="POST">
             <input type="hidden" name="idpost" value="' . $fo["idindex"] . '">
             <input type="submit" value="..." class="tocoment" name="tocoment">
           </form>
@@ -53,6 +53,7 @@ if (isset($_COOKIE["usuari"])) {
   if(isset($_POST["tocoment"])){
     $idpost = $_POST["idpost"];
     $_SESSION["postid"] = $idpost;
+    header('Location: likecoment.php');
   }
   }
   echo '</div>

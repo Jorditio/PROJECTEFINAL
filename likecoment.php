@@ -1,6 +1,5 @@
 <?php include 'connexio.php';
 include 'header.php';
-$lik = 0;
 if (isset($_COOKIE["usuari"])) {
     class CRUD extends Connexio
     {
@@ -21,7 +20,7 @@ if (isset($_COOKIE["usuari"])) {
 ?>
 
     <form method="POST">
-        <button onclick="<?php $lik++ ?>">LIKE</button>
+        <input type="checkbox" name="like">
         <br>
         <input type="text" placeholder="enter a coment ..." name="com">
         <input type="submit" value="SEND" name="likee">
@@ -33,8 +32,16 @@ if (isset($_COOKIE["usuari"])) {
         $idpost = $_SESSION["postid"];
         $username = $_COOKIE["usuari"];
         $coment = $_POST["com"];
+        $likee = $_POST["like"];
+        if ($likee == true){
+            $lik = 1;
+        }
+        else{
+            $lik = 0;
+        }
         $cmd = new CRUD();
         $cmd->insertlikecoment($username, $idpost, $lik, $coment);
+        header('Location: cotxes.php');
     }
     ?>
 

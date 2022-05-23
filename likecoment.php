@@ -16,9 +16,32 @@ if (isset($_COOKIE["usuari"])) {
                 return "ERROR";
             }
         }
+
+        public function selectTotalLikes($post)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
+            $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        }
+
+        public function selectcoment($post)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT username, comentari FROM likeecoment WHERE idpost = :idpost");
+            $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+
+        public function selectImgs($post)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT fotos FROM likeecoment, pujades WHERE idindex = idpost AND idindex = :idpost  GROUP BY idpost");
+            $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        }
     }
 ?>
-
     <form method="POST">
         <input type="checkbox" name="like">
         <br>
@@ -27,19 +50,33 @@ if (isset($_COOKIE["usuari"])) {
     </form>
 
     <?php
-    echo $_SESSION["postid"];
+    $cmd = new CRUD();
+    $idp = $cmd->selectTotalLikes($_SESSION["postid"]);
+    $comentaris = $cmd->selectcoment($_SESSION["postid"]);
+    $img = $cmd->selectImgs($_SESSION["postid"]);
+
+    echo '<div class="imgcoment">
+    <div class="imgss">
+    <img class="post-img-1" src="' . $img["fotos"] . '" style="width: 20vw">
+    </div>
+    <div class="coment">';
+    foreach($comentaris as $co){
+     echo '<p><b>'.$co["username"].'</b>  '.$co["comentari"].'</p>';
+    }
+    echo '</div>
+    </div>';
+    
+    
     if (isset($_POST["likee"])) {
         $idpost = $_SESSION["postid"];
         $username = $_COOKIE["usuari"];
         $coment = $_POST["com"];
         $likee = $_POST["like"];
-        if ($likee == true){
+        if ($likee == true) {
             $lik = 1;
-        }
-        else{
+        } else {
             $lik = 0;
         }
-        $cmd = new CRUD();
         $cmd->insertlikecoment($username, $idpost, $lik, $coment);
         header('Location: cotxes.php');
     }

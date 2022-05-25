@@ -5,10 +5,10 @@ if (isset($_COOKIE["usuari"])) {
     {
         public function insertlikecoment($user, $idpost, $like, $coment)
         {
-            $stmt = Connexio::connectar()->prepare("INSERT INTO likeecoment (username, idpost, likess, comentari) VALUES (:user, :idpost, :like, :coment)");
+            $stmt = Connexio::connectar()->prepare("INSERT INTO likeecoment (username, idpost, likess, comentari) VALUES (:user, :idpost, :likes, :coment)");
             $stmt->bindParam(":user", $user, PDO::PARAM_STR);
             $stmt->bindParam(":idpost", $idpost, PDO::PARAM_STR);
-            $stmt->bindParam(":like", $like, PDO::PARAM_STR);
+            $stmt->bindParam(":likes", $like, PDO::PARAM_STR);
             $stmt->bindParam(":coment", $coment, PDO::PARAM_STR);
             if ($stmt->execute()) {
                 return "CORRECTE";

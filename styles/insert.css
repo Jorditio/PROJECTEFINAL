@@ -1,0 +1,7 @@
+.model, .marca, .trans, .carburant{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size:medium;
+    margin-bottom: 1rem;
+}

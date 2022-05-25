@@ -48,6 +48,13 @@ if (isset($_COOKIE["usuari"])) {
 				return "ERROR";
 			}
 		}
+		public function selectTotalLikes($post)
+        {
+            $stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
+            $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        }
 	}
 	$username = $_COOKIE["usuari"];
 	$cmd = new CRUD();
@@ -159,10 +166,11 @@ if (isset($_COOKIE["usuari"])) {
 								<tbody>
 									<?php foreach ($imgsuser as $im) {
 										$numposts++;
+										$idp = $cmd->selectTotalLikes($im["idindex"]);
 										echo '<tr>
 									<th scope="row" style="text-align: center">' . $numposts . '</th>
 									<td style="text-align: center">' . $im["descripcio"] . '</td>
-									<td style="text-align: center">' . $im["descripcio"] . '</td>
+									<td style="text-align: center">' . $idp["likess"] . '</td>
 									<td style="text-align: center"><img class="post-img-2" src="' . $im["fotos"] . '"></td>
 								</tr>';
 									} ?>

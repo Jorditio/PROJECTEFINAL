@@ -67,7 +67,7 @@ td {
 .text {
     width: 90%;
     white-space: nowrap;
-    color: white;
+    color: #fff;
     font-size: 20px;
     position: absolute;
     overflow: hidden;
@@ -119,12 +119,26 @@ td {
 
 .post-body h2 {
     margin-bottom: 15px;
-
 }
 
 .post-body p {
     line-height: 1.5;
     margin-bottom: 20px;
+}
+
+.tocoment{
+    width: 3rem;
+    height: auto;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.tocoment:hover{
+    transform: scale(1.1);
+    background-color: rgb(163, 163, 163);
 }
 
 @media (max-width: 840px) {

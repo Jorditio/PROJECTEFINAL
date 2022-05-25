@@ -42,6 +42,7 @@ if (isset($_COOKIE["usuari"])) {
         }
     }
 ?>
+    <script src="likecoment.js"></script>
     <form method="POST">
         <input type="checkbox" name="like">
         <br>
@@ -60,13 +61,13 @@ if (isset($_COOKIE["usuari"])) {
     <img class="post-img-1" src="' . $img["fotos"] . '" style="width: 20vw">
     </div>
     <div class="coment">';
-    foreach($comentaris as $co){
-     echo '<p><b>'.$co["username"].'</b>  '.$co["comentari"].'</p>';
+    foreach ($comentaris as $co) {
+        echo '<p><b>' . $co["username"] . '</b>  ' . $co["comentari"] . '</p>';
     }
     echo '</div>
     </div>';
-    
-    
+
+
     if (isset($_POST["likee"])) {
         $idpost = $_SESSION["postid"];
         $username = $_COOKIE["usuari"];

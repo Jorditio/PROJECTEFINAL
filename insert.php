@@ -115,7 +115,7 @@ class CRUD extends Connexio
         <form method="POST" enctype="multipart/form-data">
             <div id="nameuser">
                 <label>Marca</label><br>
-                <select name="marca" value="marca">
+                <select name="marca" value="marca" class="marca">
                 <?php         
                 $cmd = new CRUD();
                 $updatees = $cmd->selectmarca();  
@@ -129,7 +129,7 @@ class CRUD extends Connexio
 
             <div id="models">
                 <label>Models</label><br>
-                <select name="model" value="model">
+                <select name="model" value="model" class="model">
                 <?php         
                 $cmd = new CRUD();
                 $modelss = $cmd->selectmodel();  
@@ -147,12 +147,14 @@ class CRUD extends Connexio
 
             <div id="fitxer">
                 <label>Imatge</label>
-                <input type="file" name="fitxer" placeholder="Selecciona el fitxer">
+                <label>
+                    <input type="file" name="fitxer">
+                </label>
             </div>
 
             <div id="transmissio">
                 <label>Transmissio</label><br>
-                <select name="trans" value="trans">
+                <select name="trans" value="trans" class="trans">
                 <?php         
                 $cmd = new CRUD();
                 $transmissio = $cmd->selectrans();  
@@ -165,7 +167,7 @@ class CRUD extends Connexio
             </div>
             <div id="Carburant">
                 <label>Carburant</label><br>
-                <select name="carburant" value="carburant">
+                <select name="carburant" value="carburant" class="carburant">
                 <?php         
                 $cmd = new CRUD();
                 $carburant = $cmd->selectcarburant();  

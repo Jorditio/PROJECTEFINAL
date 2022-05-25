@@ -42,7 +42,7 @@ if (isset($_COOKIE["usuari"])) {
           <span></span>
           <form method="POST">
             <input type="hidden" name="idpost" value="' . $fo["idindex"] . '">
-            <input type="submit" value="..." class="tocoment" name="tocoment">
+            <input type="submit" value="···" class="tocoment" name="tocoment">
           </form>
           <h2>' . $fo["UPPER(username)"] . '</h2>
           <p class="descripcion">' . $fo["descripcio"] . ' </p>

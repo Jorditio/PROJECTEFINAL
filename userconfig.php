@@ -50,7 +50,7 @@ if (isset($_COOKIE["usuari"])) {
 		}
 		public function selectTotalLikes($post)
         {
-            $stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
+            $stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) as likess FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
             $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();

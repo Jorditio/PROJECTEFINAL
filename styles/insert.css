@@ -5,3 +5,16 @@
     font-size:medium;
     margin-bottom: 1rem;
 }
+
+#fitxer{
+    margin-bottom: 1rem;
+}
+
+#upload2{
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}

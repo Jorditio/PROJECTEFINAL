@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="styles\cotxes.css">
     <link rel="stylesheet" type="text/css" href="styles\insert.css">
     <link rel="stylesheet" type="text/css" href="styles\userconfig.css">
-    <link rel="stylesheet" type="text/css" href="styles\userconfigss.scss">
     <link rel="stylesheet" type="text/css" href="styles\likecoment.css">
     <title>Manifold</title>
 </head>

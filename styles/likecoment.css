@@ -1,0 +1,30 @@
+input[type="text"]{
+    border: none;
+    height: 2rem;
+    border-bottom: 20px;
+    background-color: transparent;
+    border-radius: 15px;
+    outline: none;
+    height: 40px;
+    color: rgb(3, 3, 3);
+    font-size: 16px;
+    width: 70%;
+}
+
+input[type="text"]{
+    background-color: rgb(226, 226, 226);
+}
+
+.likee{
+    border: none;
+    height: 2.5rem;
+    margin: 1rem;
+    background-color: rgb(122, 252, 252);
+    border-radius: 30%;
+}
+
+.likee:hover{
+    cursor: pointer;
+    background-color: rgb(78, 255, 78);
+    transition: 1s;
+}

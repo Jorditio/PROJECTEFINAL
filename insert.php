@@ -2,7 +2,8 @@
 
 use CRUD as GlobalCRUD;
 
- include 'header.php'; include 'connexio.php';?>
+include 'header.php';
+include 'connexio.php'; ?>
 
 
 
@@ -10,185 +11,181 @@ use CRUD as GlobalCRUD;
 
 
 class CRUD extends Connexio
+{
+    public function selectmodel()
     {
-        public function selectmodel()
-        {
-            //opcio2
-            $stmt = Connexio::connectar()->prepare("SELECT nom from models");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        }
-
-
-        public function selectmarca()
-        {
-            //opcio2
-            $stmt = Connexio::connectar()->prepare("SELECT nom from marques");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        }
-
-        public function selectrans()
-        {
-
-            //opcio2
-            $stmt = Connexio::connectar()->prepare("SELECT nom from transmissio");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        }
-
-        public function selectcarburant()
-        {
-
-            //opcio2
-            $stmt = Connexio::connectar()->prepare("SELECT nom from carburant");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        }
-
-
-        public function insert($mar,$mod, $any, $tra, $car, $descr, $foto)
-        {
-            // consulta del id del usuari connectat
-            $stmt = Connexio::connectar()->prepare("SELECT * from usuaris where username ='". $_COOKIE['usuari']."'");
-            $stmt->execute();
-            $idusername = $stmt->fetchAll()[0]["idusuaris"];
-            
-            $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio, usuaris_idusuaris, fotos, time) values (:mar, :mod, :any, :tra, :car, :descr, :user, :foto, NOW())");
-            $stmt->bindParam(":mar", $mar, PDO::PARAM_STR);
-            $stmt->bindParam(":mod", $mod, PDO::PARAM_STR);
-            $stmt->bindParam(":any", $any, PDO::PARAM_STR);
-            $stmt->bindParam(":tra", $tra, PDO::PARAM_STR);
-            $stmt->bindParam(":car", $car, PDO::PARAM_STR);
-            $stmt->bindParam(":foto", $foto, PDO::PARAM_STR);
-            $stmt->bindParam(":descr", $descr, PDO::PARAM_STR);
-            $stmt->bindParam(":user", $idusername, PDO::PARAM_STR);
-            if ($stmt->execute())
-            {
-                return "CORRECTE";
-            }
-            else {
-                return "ERROR";
-            }
-        }
-
+        //opcio2
+        $stmt = Connexio::connectar()->prepare("SELECT nom from models");
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
+
+
+    public function selectmarca()
+    {
+        //opcio2
+        $stmt = Connexio::connectar()->prepare("SELECT nom from marques");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function selectrans()
+    {
+
+        //opcio2
+        $stmt = Connexio::connectar()->prepare("SELECT nom from transmissio");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function selectcarburant()
+    {
+
+        //opcio2
+        $stmt = Connexio::connectar()->prepare("SELECT nom from carburant");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
+    public function insert($mar, $mod, $any, $tra, $car, $descr, $foto)
+    {
+        // consulta del id del usuari connectat
+        $stmt = Connexio::connectar()->prepare("SELECT * from usuaris where username ='" . $_COOKIE['usuari'] . "'");
+        $stmt->execute();
+        $idusername = $stmt->fetchAll()[0]["idusuaris"];
+
+        $stmt = Connexio::connectar()->prepare("INSERT INTO pujades (marca, model, any, transmissio, carburant, descripcio, usuaris_idusuaris, fotos, time) values (:mar, :mod, :any, :tra, :car, :descr, :user, :foto, NOW())");
+        $stmt->bindParam(":mar", $mar, PDO::PARAM_STR);
+        $stmt->bindParam(":mod", $mod, PDO::PARAM_STR);
+        $stmt->bindParam(":any", $any, PDO::PARAM_STR);
+        $stmt->bindParam(":tra", $tra, PDO::PARAM_STR);
+        $stmt->bindParam(":car", $car, PDO::PARAM_STR);
+        $stmt->bindParam(":foto", $foto, PDO::PARAM_STR);
+        $stmt->bindParam(":descr", $descr, PDO::PARAM_STR);
+        $stmt->bindParam(":user", $idusername, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return "CORRECTE";
+        } else {
+            return "ERROR";
+        }
+    }
+}
 
 ?>
 
 <?php
-        $cmd = new CRUD();
+$cmd = new CRUD();
 
-        if(isset($_POST["send"])){
-            $marca = $_POST["marca"];
-            $models = $_POST["model"];
-            $any = $_POST["any"];
-            $trans = $_POST["trans"];
-            $combustible = $_POST["carburant"];
-            $descripcio = $_POST["desc"];
+if (isset($_POST["send"])) {
+    $marca = $_POST["marca"];
+    $models = $_POST["model"];
+    $any = $_POST["any"];
+    $trans = $_POST["trans"];
+    $combustible = $_POST["carburant"];
+    $descripcio = $_POST["desc"];
 
-            $mida = $_FILES["fitxer"]["size"];
-            if ($mida > 1024 * 1024) {
-                echo '<script language="javascript">alert("Imatge Massa Gran");</script>';
-                return;
-            }
-            $res = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
-            if ($res) {
-                $image = "pujades/" . $_FILES['fitxer']['name'];
-              } else {
-                echo '<script language="javascript">alert("NO save php");</script>';
-              }
+    $mida = $_FILES["fitxer"]["size"];
+    if ($mida > 1024 * 1024) {
+        echo '<script language="javascript">alert("Imatge Massa Gran");</script>';
+        return;
+    }
+    $res = move_uploaded_file($_FILES["fitxer"]["tmp_name"], "pujades/" . $_FILES["fitxer"]["name"]);
+    if ($res) {
+        $image = "pujades/" . $_FILES['fitxer']['name'];
+    } else {
+        echo '<script language="javascript">alert("NO save php");</script>';
+    }
 
-            $cmd->insert($marca, $models, $any, $trans, $combustible, $descripcio, $image);
-            echo '<script language="javascript">alert("Automobil inserit correctament");</script>';
-        }
+    $cmd->insert($marca, $models, $any, $trans, $combustible, $descripcio, $image);
+    echo '<script language="javascript">alert("Automobil inserit correctament");</script>';
+}
 
 
-        if(isset($_COOKIE["usuari"])){
+if (isset($_COOKIE["usuari"])) {
 
-        
+
 ?>
 
 
-<div id=logbox>
-    <div id="register">
-        <form method="POST" enctype="multipart/form-data">
-            <div id="nameuser">
-                <label>Marca</label><br>
-                <select name="marca" value="marca" class="marca">
-                <?php         
-                $cmd = new CRUD();
-                $updatees = $cmd->selectmarca();  
+    <div id=logbox>
+        <div id="register">
+            <form method="POST" enctype="multipart/form-data">
+                <div id="nameuser">
+                    <label>Marca</label><br>
+                    <select name="marca" value="marca" class="marca">
+                        <?php
+                        $cmd = new CRUD();
+                        $updatees = $cmd->selectmarca();
 
-                foreach ($updatees as $updates) {
-                        echo '
+                        foreach ($updatees as $updates) {
+                            echo '
                         <option value="' . $updates["nom"] . '">' . $updates['nom'] . '</option>';
-                    }
-                ?></select>
-            </div><br>
+                        }
+                        ?></select>
+                </div><br>
 
-            <div id="models">
-                <label>Models</label><br>
-                <select name="model" value="model" class="model">
-                <?php         
-                $cmd = new CRUD();
-                $modelss = $cmd->selectmodel();  
+                <div id="models">
+                    <label>Models</label><br>
+                    <select name="model" value="model" class="model">
+                        <?php
+                        $cmd = new CRUD();
+                        $modelss = $cmd->selectmodel();
 
-                foreach ($modelss as $updates) {
-                        echo '
+                        foreach ($modelss as $updates) {
+                            echo '
                         <option value="' . $updates["nom"] . '">' . $updates['nom'] . '</option>';
-                    }
-                ?></select>
-            </div><br>
-            <div id="any">
-                <label>Any</label>
-                <input type="text" name="any" placeholder="Introdueixi l'any">
-            </div>
+                        }
+                        ?></select>
+                </div><br>
+                <div id="anys">
+                    <label>Any</label>
+                    <input type="text" name="any" placeholder="Introdueixi l'any">
+                </div>
 
-            <div id="fitxer">
-                <label>Imatge</label>
-                <label>
-                    <input type="file" name="fitxer">
-                </label>
-            </div>
+                <div id="fitxer">
+                    <label>Imatge</label>
+                    <div class="filess">
+                        <span class="ttfile">To Change Profile Picture Click Here</span>
+                        <input type="file" name="fitxer" id="upload2">
+                    </div>
+                </div>
 
-            <div id="transmissio">
-                <label>Transmissio</label><br>
-                <select name="trans" value="trans" class="trans">
-                <?php         
-                $cmd = new CRUD();
-                $transmissio = $cmd->selectrans();  
-                foreach ($transmissio as $updates) {
-                        echo '
+                <div id="transmissio">
+                    <label>Transmissio</label><br>
+                    <select name="trans" value="trans" class="trans">
+                        <?php
+                        $cmd = new CRUD();
+                        $transmissio = $cmd->selectrans();
+                        foreach ($transmissio as $updates) {
+                            echo '
                         <option value="' . $updates["nom"] . '">' . $updates['nom'] . '</option>';
-                    }
-                ?>
-                </select>
-            </div>
-            <div id="Carburant">
-                <label>Carburant</label><br>
-                <select name="carburant" value="carburant" class="carburant">
-                <?php         
-                $cmd = new CRUD();
-                $carburant = $cmd->selectcarburant();  
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div id="Carburant">
+                    <label>Carburant</label><br>
+                    <select name="carburant" value="carburant" class="carburant">
+                        <?php
+                        $cmd = new CRUD();
+                        $carburant = $cmd->selectcarburant();
 
-                foreach ($carburant as $updates) {
-                        echo '
+                        foreach ($carburant as $updates) {
+                            echo '
                         <option value="' . $updates["nom"] . '">' . $updates['nom'] . '</option>';
-                    }
-                ?></select>
-            </div><br>
-            <div id="descripcio">
-                <label>Descripcio</label>
-                <input type="text" name="desc" placeholder="Introdueixi descripcio">
-            </div>
-            <input type="submit" name="send" id="btsend" value="OK"><br>
-        </form>
+                        }
+                        ?></select>
+                </div><br>
+                <div id="descripcio">
+                    <label>Descripcio</label>
+                    <input type="text" name="desc" placeholder="Introdueixi descripcio">
+                </div>
+                <input type="submit" name="send" id="btsend" value="OK"><br>
+            </form>
+        </div>
     </div>
-</div>
-<?php } 
-
-else{
+<?php } else {
     echo '<script language="javascript">alert("Has de tenir la sessio iniciada");</script>';
 }
 ?>

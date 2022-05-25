@@ -42,13 +42,7 @@ if (isset($_COOKIE["usuari"])) {
         }
     }
 ?>
-    <script src="likecoment.js"></script>
-    <form method="POST">
-        <input type="checkbox" name="like">
-        <br>
-        <input type="text" placeholder="enter a coment ..." name="com">
-        <input type="submit" value="SEND" name="likee">
-    </form>
+    
 
     <?php
     $cmd = new CRUD();
@@ -56,18 +50,26 @@ if (isset($_COOKIE["usuari"])) {
     $comentaris = $cmd->selectcoment($_SESSION["postid"]);
     $img = $cmd->selectImgs($_SESSION["postid"]);
 
-    echo '<div class="imgcoment">
-    <div class="imgss">
-    <img class="post-img-1" src="' . $img["fotos"] . '" style="width: 20vw">
-    </div>
-    <div class="coment">';
+    echo '<section class="post-list">
+    <div class="imgcoment">
+    <article class="post">
+        <div class="post-header">
+            <img class="post-img-1" src="' . $img["fotos"] . '">
+        </div>
+    <div class="coment">
+    <div class="post-body">';
     foreach ($comentaris as $co) {
         echo '<p><b>' . $co["username"] . '</b>  ' . $co["comentari"] . '</p>';
     }
-    echo '</div>
-    </div>';
+    echo '<form method="POST">
+            <input type="checkbox" name="like"> LIKE
+            <input type="text" placeholder=" enter a coment ..." name="com">
+            <input type="submit" value=" SEND " name="likee" class="likee">
+        </form></div></article>';
 
-
+    
+    ?>
+<?php
     if (isset($_POST["likee"])) {
         $idpost = $_SESSION["postid"];
         $username = $_COOKIE["usuari"];
@@ -81,7 +83,7 @@ if (isset($_COOKIE["usuari"])) {
         $cmd->insertlikecoment($username, $idpost, $lik, $coment);
         header('Location: cotxes.php');
     }
-    ?>
+?>
 
 <?php } else {
     header('Location: login.php');

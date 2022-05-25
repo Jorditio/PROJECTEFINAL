@@ -49,12 +49,12 @@ if (isset($_COOKIE["usuari"])) {
 			}
 		}
 		public function selectTotalLikes($post)
-        {
-            $stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) as likess FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
-            $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetch();
-        }
+		{
+			$stmt = Connexio::connectar()->prepare("SELECT COUNT(likess) as likess FROM likeecoment WHERE likess = 1 AND idpost = :idpost");
+			$stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetch();
+		}
 	}
 	$username = $_COOKIE["usuari"];
 	$cmd = new CRUD();
@@ -62,7 +62,6 @@ if (isset($_COOKIE["usuari"])) {
 	$imgsuser = $cmd->selectImgUser($username);
 	$numposts = 0;
 ?>
-
 	<section class="py-5 my-5">
 		<div class="container" class="userconf">
 			<h1 class="mb-5">Account Settings</h1>
@@ -94,13 +93,15 @@ if (isset($_COOKIE["usuari"])) {
 						<h3 class="mb-4">Account Settings</h3>
 						<form method="POST" enctype="multipart/form-data">
 							<div class="row">
-								<label>Profile Picture</label>
-								<br>
-								<input type="file" name="fitxer" placeholder="Select your porfile picture">
+								<div class="col-md-12">
+									<span>To Change Profile Picture Click Here</span>
+									<input type="file" name="fitxer" id="upload" placeholder="Upload File">
+									<br><br>
+								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label>Bio</label>
-										<input type="text" name="descrip" value="<?php echo $configuser["descripciouser"]; ?>">
+										<input type="text" name="descrip" value="<?php echo $configuser["descripciouser"]; ?>" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -144,10 +145,9 @@ if (isset($_COOKIE["usuari"])) {
 							$newpasword = $_POST["newpas"];
 							$samepas = password_verify($newpasword, password_hash($_POST["confirmpas"], PASSWORD_DEFAULT));
 							$newpas = password_hash($_POST["newpas"], PASSWORD_DEFAULT);
-							if ($samepas == true){
+							if ($samepas == true) {
 								$cmd->updatePasword($newpas, $username);
-							}
-							else{
+							} else {
 								echo '<script language="javascript">alert("nop");</script>';
 							}
 						} ?>

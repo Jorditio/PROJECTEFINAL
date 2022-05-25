@@ -45,11 +45,8 @@ class CRUD extends Connexio
 if(isset($_POST["send"])){
     $usuari = $_POST["username"];
     $password = $_POST["password"];
-
     $cmd = new CRUD();
     $registres = $cmd->selectlogin($usuari);
-	// $newpas = password_hash("123456", PASSWORD_DEFAULT);
-    // echo $newpas;
     $samepasword = password_verify($password, $registres["contrasenya"]);
     if($samepasword == true){
         setcookie("usuari", $usuari);

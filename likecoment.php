@@ -35,7 +35,7 @@ if (isset($_COOKIE["usuari"])) {
 
         public function selectImgs($post)
         {
-            $stmt = Connexio::connectar()->prepare("SELECT fotos FROM likeecoment, pujades WHERE idindex = idpost AND idindex = :idpost  GROUP BY idpost");
+            $stmt = Connexio::connectar()->prepare("SELECT fotos FROM likeecoment right outer join pujades on idindex = idpost where idindex = :idpost  GROUP BY fotos");
             $stmt->bindParam(":idpost", $post, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();

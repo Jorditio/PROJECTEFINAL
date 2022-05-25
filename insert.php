@@ -146,7 +146,7 @@ if (isset($_COOKIE["usuari"])) {
                 <div id="fitxer">
                     <label>Imatge</label>
                     <div class="filess">
-                        <span class="ttfile">To Change Profile Picture Click Here</span>
+                        <span class="ttfile">To Upload a Picture Click Here</span>
                         <input type="file" name="fitxer" id="upload2">
                     </div>
                 </div>

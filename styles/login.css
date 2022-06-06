@@ -32,15 +32,15 @@ div#login{
     left: 80vw;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 30vh 20vh;
-    
+    padding: 20vh 10vh;
 }
+
 div#login label{
     margin: 0;
     padding: 0;
     font-weight: bold;
     display: block;
-    font-size: 22px;
+    font-size: 50px;
 }
 
 div#login input{
@@ -58,12 +58,10 @@ div#login input[type="text"], div#login input[type="password"]{
     background-color: transparent;
     border-radius: 15px;
     outline: none;
-    height: 40px;
+    height: 5vh;
     color: rgb(3, 3, 3);
-    font-size: 16px;
+    font-size: 45px;
 }
-
-
 
 div#login input[type="submit"]{
     border: none;
@@ -104,4 +102,46 @@ div#forgot button{
 
 div div#forgot label{
     font-size: 16px;
+}
+
+@media only screen and (min-width: 700px) {
+
+    div#login{
+        padding: 30vh 10vw;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+
+    div#login{
+        width: 100vw;
+        height: 100vh;
+        top: 50vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    div#login{
+        padding: 30vh 20vw;
+    }
+
+    div#login label{
+        font-size: 22px;
+    }
+
+    div#login input[type="text"], div#login input[type="password"]{
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    div#login{
+        width: 40vw;
+        height: 100vh;
+        top: 50vh;
+        left: 80vw;
+        transform: translate(-50%, -50%);
+        padding: 30vh 20vh;
+    }
 }

@@ -29,10 +29,9 @@ body {
     margin: 5vh;
 }
 
-
 .post {
     height: auto;
-    width: 30vw;
+    width: 100vw;
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, .1);
     transition: .2s;
     padding: 1vh;
@@ -141,14 +140,17 @@ td {
     background-color: rgb(163, 163, 163);
 }
 
-@media (max-width: 840px) {
-    .content {
-        grid-template-columns: repeat(1, 1fr);
+
+@media only screen and (min-width: 800px) {
+    .post {
+        height: auto;
+        width: 80vw;
     }
 }
 
-@media (max-width: 600px) {
-    .content {
-        grid-template-columns: repeat(1, 1fr);
+@media only screen and (min-width: 1050px) {
+    .post {
+        height: auto;
+        width: 30vw;
     }
 }
